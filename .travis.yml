@@ -30,15 +30,15 @@ matrix:
     - TEST_SUITE=vmdb PARALLEL=true
   # Power jobs
   - sudo: required
-    dist: focal
+    dist: bionic
     arch: ppc64le
-    rvm: 2.7
+    rvm: 2.6.6
     env:
     - TEST_SUITE=vmdb PARALLEL=true
   - sudo: required
-    dist: focal
+    dist: bionic
     arch: ppc64le
-    rvm: 2.7
+    rvm: 2.6.6
     env:
     - TEST_SUITE=brakeman
 addons:
