@@ -28,6 +28,23 @@ matrix:
     - RUBY_GC_HEAP_GROWTH_FACTOR=1.25
     - PARALLEL_TEST_PROCESSORS=2
     - TEST_SUITE=vmdb PARALLEL=true
+  # Power jobs
+  - sudo: required
+    dist: focal
+    arch: ppc64le
+    rvm: 2.7
+    env:
+    - TEST_SUITE=vmdb PARALLEL=true
+    addons:
+      libpq-dev  # To fix a missing header file issue
+  - sudo: required
+    dist: focal
+    arch: ppc64le
+    rvm: 2.7
+    env:
+    - TEST_SUITE=brakeman
+    addons:
+      libpq-dev
 addons:
   postgresql: '10'
 before_install: source ${TRAVIS_BUILD_DIR}/bin/ci/before_install.sh
