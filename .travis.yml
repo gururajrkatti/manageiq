@@ -44,7 +44,10 @@ matrix:
     env:
     - TEST_SUITE=brakeman
     addons:
-      libpq-dev
+     apt:
+      update: true
+      packages:
+       - libpq-dev
 addons:
   postgresql: '10'
 before_install: source ${TRAVIS_BUILD_DIR}/bin/ci/before_install.sh
