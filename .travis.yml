@@ -46,8 +46,8 @@ addons:
 before_install: 
     - | 
       if [[ "$TRAVIS_CPU_ARCH" = "ppc64le" ]]; then
-        apt update;
-        apt install -y libpq-dev; # To fix a missing header file issue
+        sudo apt update;
+        sudo apt install -y libpq-dev; # To fix a missing header file issue
       fi
     - source ${TRAVIS_BUILD_DIR}/bin/ci/before_install.sh
 before_script: source ${TRAVIS_BUILD_DIR}/bin/ci/before_script.sh
