@@ -35,22 +35,21 @@ matrix:
     rvm: 2.7
     env:
     - TEST_SUITE=vmdb PARALLEL=true
-    addons:
-      libpq-dev  # To fix a missing header file issue
   - sudo: required
     dist: focal
     arch: ppc64le
     rvm: 2.7
     env:
     - TEST_SUITE=brakeman
-    addons:
-     apt:
-      update: true
-      packages:
-       - libpq-dev
 addons:
   postgresql: '10'
-before_install: source ${TRAVIS_BUILD_DIR}/bin/ci/before_install.sh
+before_install: 
+    - | 
+      if [[ "$TRAVIS_CPU_ARCH" = "ppc64le" ]]; then
+        apt update;
+        apt install -y libpq-dev; # To fix a missing header file issue
+      fi
+    - source ${TRAVIS_BUILD_DIR}/bin/ci/before_install.sh
 before_script: source ${TRAVIS_BUILD_DIR}/bin/ci/before_script.sh
 after_failure: source ${TRAVIS_BUILD_DIR}/bin/ci/after_failure.sh
 notifications:
